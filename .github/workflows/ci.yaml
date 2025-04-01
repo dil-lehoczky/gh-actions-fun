@@ -19,6 +19,12 @@ jobs:
           GITHUB_CONTEXT: ${{ toJson(github) }}
         run: echo "$GITHUB_CONTEXT"
 
+      - name: Generate short commit SHA
+        id: short-sha
+        uses: ./.github/actions/short-commit-sha
+
+      - run: echo ${{steps.short-sha.outputs.value}}
+
       - name: Check out Git repository ⏬
         uses: actions/checkout@v4
 

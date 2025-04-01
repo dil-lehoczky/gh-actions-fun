@@ -1,0 +1,15 @@
+name: "Short commit SHA"
+description: "Generates a short commit SHA"
+
+outputs:
+  value:
+    description: "Short commit SHA"
+    value: ${{ steps.short-sha.outputs.sha }}
+
+runs:
+  using: "composite"
+  steps:
+    - name: Generate short commit SHA
+      id: short-sha
+      run: echo "sha=$(git rev-parse --short HEAD)" >> $GITHUB_OUTPUT
+      shell: bash
